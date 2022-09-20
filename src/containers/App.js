@@ -9,7 +9,7 @@ import Ciudad from "../components/Ciudad";
 function App() {
   const [cities, setCities] = useState([]);
 
-  // ONCLOSE:
+  // ONCLOSE: FUNCION QUE ES EJECUTADA POR EL BOTON "CERRAR" EN UNA CARD
   function onClose(id) {
     setCities((oldCities) => oldCities.filter((c) => c.id !== id));
   }
