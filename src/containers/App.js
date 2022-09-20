@@ -6,18 +6,20 @@ import Cards from "../components/Cards.jsx";
 import About from "../components/About";
 import Ciudad from "../components/Ciudad";
 
-const apiKey = "4ae2636d8dfbdc3044bede63951a019b";
-
 function App() {
   const [cities, setCities] = useState([]);
 
+  // ONCLOSE:
   function onClose(id) {
     setCities((oldCities) => oldCities.filter((c) => c.id !== id));
   }
+
+  // ONSEARCH: HACE LA PETICION A LA API DEL CLIMA, PASANDO COMO PARAMETRO EL VALOR DEL INPUT INGRESADO POR EL USUARIO (NOMBRE DE LA CIUDAD),
+  // BUSCA LA CIUDAD Y ACTUALIZA EL ESTADO, AGREGANDO LA CIUDAD RECIBIDA CON LOS VALORES CORRESPONDIENTES.
   function onSearch(ciudad) {
     //Llamado a la API del clima
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid="4ae2636d8dfbdc3044bede63951a019b"`
     )
       .then((r) => r.json())
       .then((recurso) => {
@@ -43,6 +45,7 @@ function App() {
       });
   }
 
+  //  ONFILTER: FILTRA ELEMENTOS DEL ESTADO QUE COINCIDAN CON EL ID PASADO COMO PARAMETRO
   function onFilter(ciudadId) {
     let ciudad = cities.filter((c) => c.id === parseInt(ciudadId));
     if (ciudad.length > 0) {
